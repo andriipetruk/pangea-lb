@@ -32,6 +32,12 @@ http {
     }
     {{end}}
 
+
+
+    upstream pangea { 
+           server 128.107.32.145:8080;
+        }
+ 
     server {
         listen {{if $SSL}}443 ssl{{else}}80{{end}};
         
@@ -51,11 +57,7 @@ http {
 
         error_log /opt/nginx_agent/logs/error.log  debug;
         access_log /opt/nginx_agent/logs/access.log;
-
-        upstream pangea { 
-           server 128.107.32.145:8080;
-        }
-        
+       
        
         location / {
             proxy_connect_timeout	600;
@@ -75,3 +77,5 @@ http {
 
        
     }
+
+}
